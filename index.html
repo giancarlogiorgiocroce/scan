@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <main class="content">
+  <!--<main class="content">
     <h1>Hi this is the M.O.P.S. app, please scan something!</h1>
     <div class="scanner-ct">
       
@@ -22,19 +22,26 @@
       <input type="text" value="" id="time">
     </form>
   </div>
-  <script src="/script.js"></script>
-<<<<<<< HEAD
+  <script src="/script.js"></script>-->
 
-  <button onclick="openGoogleLens()">Apri Google Lens</button>
+  <h1>Scanner QR Code</h1>
+  <video id="preview"></video>
 
   <script>
-      function openGoogleLens() {
-          window.open('lens://', '_system');
-      }
+      let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
+      scanner.addListener('scan', function (content) {
+          alert('QR Code Content: ' + content);
+      });
+
+      Instascan.Camera.getCameras().then(function (cameras) {
+          if (cameras.length > 0) {
+              scanner.start(cameras[0]);
+          } else {
+              alert('No cameras found.');
+          }
+      }).catch(function (e) {
+          console.error(e);
+      });
   </script>
 </body>
 </html>
-=======
-</body>
-</html>
->>>>>>> 8456bab64256b25b86df1b3dd196a25e5296c548
