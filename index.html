@@ -32,21 +32,24 @@
   <script src="/instascan.min.js"></script>
 
   <script>
-      let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
-      scanner.addListener('scan', function (content) {
-          alert('QR Code Content: ' + content);
-      });
+if (typeof Instascan !== 'undefined') {
+    let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
+    scanner.addListener('scan', function (content) {
+        alert('QR Code Content: ' + content);
+    });
 
-      Instascan.Camera.getCameras().then(function (cameras) {
-          if (cameras.length > 0) {
-              //scanner.start(cameras[0]);
-              scanner.start(cameras[cameras.length - 1])
-          } else {
-              alert('No cameras found.');
-          }
-      }).catch(function (e) {
-          console.error(e);
-      });
+    Instascan.Camera.getCameras().then(function (cameras) {
+        if (cameras.length > 0) {
+            scanner.start(cameras[0]);
+        } else {
+            alert('No cameras found.');
+        }
+    }).catch(function (e) {
+        console.error(e);
+    });
+} else {
+    console.error("Instascan library not loaded.");
+}
   </script>
 </body>
 </html>
