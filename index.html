@@ -5,51 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Monitoring Object Position System</title>
   <link rel="stylesheet" href="style.css">
-
+  
+  <!-- Include il file JavaScript di ScanApp per la scansione dei QR code -->
+  <script src="https://cdn.jsdelivr.net/npm/html5-qrcode/minified/html5-qrcode.min.js"></script>
 </head>
 <body>
-  <!--<main class="content">
-    <h1>Hi this is the M.O.P.S. app, please scan something!</h1>
-    <div class="scanner-ct">
-      
-      <button id="scan">You are scanning</button>
-    </div>
-  </main>
-
-  <div class="hidden">
-    <button type="submit" id="send"></button>
-    <form action="" method="post">
-      <input type="text" value="" id="">
-      <input type="text" value="" id="time">
-    </form>
-  </div>
-  <script src="/script.js"></script>-->
-
   <h1>Scanner QR Code</h1>
-  <video id="preview"></video>
-
-
-  <script src="/instascan.min.js"></script>
+  <div id="reader" style="width: 300px;"></div>
 
   <script>
-if (typeof Instascan !== 'undefined') {
-    let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
-    scanner.addListener('scan', function (content) {
-        alert('QR Code Content: ' + content);
-    });
+    function onScanSuccess(decodedText, decodedResult) {
+        // Questa funzione verrà chiamata ogni volta che un QR code viene scansionato
+        alert(`QR Code Content: ${decodedText}`);
+    }
 
-    Instascan.Camera.getCameras().then(function (cameras) {
-        if (cameras.length > 0) {
-            scanner.start(cameras[0]);
-        } else {
-            alert('No cameras found.');
-        }
-    }).catch(function (e) {
-        console.error(e);
-    });
-} else {
-    console.error("Instascan library not loaded.");
-}
+    function onScanFailure(error) {
+        // Questa funzione verrà chiamata in caso di errore nella scansione
+        console.warn(`QR Code scan error = ${error}`);
+    }
+
+    // Configura e avvia il lettore di QR code con le impostazioni di base
+    let html5QrcodeScanner = new Html5QrcodeScanner(
+        "reader", { fps: 10, qrbox: { width: 250, height: 250 } }
+    );
+    html5QrcodeScanner.render(onScanSuccess, onScanFailure);
   </script>
 </body>
 </html>
