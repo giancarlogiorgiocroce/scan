@@ -1,0 +1,36 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  background-color: rgba(green, 0.1);
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+h1 {
+  color: #28c7e8;
+}
+
+.scanner-ct {
+  padding: 1rem;
+  border: 1px solid #28c7e8;
+  border-radius: 20px;
+}
+
+button {
+  color: white;
+  background-color: #8fb317;
+  border: none;
+  padding: 1rem;
+}
+
+.hidden {
+  visibility: hidden;
+}
