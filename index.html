@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Monitoring Object Position System</title>
   <link rel="stylesheet" href="style.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/instascan/2.0.0-rc.4/instascan.min.js"></script>
 
 </head>
 <body>
@@ -28,6 +27,9 @@
 
   <h1>Scanner QR Code</h1>
   <video id="preview"></video>
+
+
+  <script src="/instascan.min.js"></script>
 
   <script>
       let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
